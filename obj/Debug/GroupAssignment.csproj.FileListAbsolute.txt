@@ -1,0 +1,7 @@
+C:\Users\Sonny\Downloads\FirstDraftj-master\FirstDraftj-master\GroupAssignment\bin\Debug\GroupAssignment.exe.config
+C:\Users\Sonny\Downloads\FirstDraftj-master\FirstDraftj-master\GroupAssignment\bin\Debug\GroupAssignment.exe
+C:\Users\Sonny\Downloads\FirstDraftj-master\FirstDraftj-master\GroupAssignment\bin\Debug\GroupAssignment.pdb
+C:\Users\Sonny\Downloads\FirstDraftj-master\FirstDraftj-master\GroupAssignment\obj\Debug\GroupAssignment.csprojAssemblyReference.cache
+C:\Users\Sonny\Downloads\FirstDraftj-master\FirstDraftj-master\GroupAssignment\obj\Debug\GroupAssignment.csproj.CoreCompileInputs.cache
+C:\Users\Sonny\Downloads\FirstDraftj-master\FirstDraftj-master\GroupAssignment\obj\Debug\GroupAssignment.exe
+C:\Users\Sonny\Downloads\FirstDraftj-master\FirstDraftj-master\GroupAssignment\obj\Debug\GroupAssignment.pdb
