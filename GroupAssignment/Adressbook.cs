@@ -7,80 +7,34 @@ using System.Threading.Tasks;
 
 namespace GroupAssignment
 {
-    class Adressbook
+    class Adressbook : IAdressBook
     {
-        List<Person> AdressBookList = new List<Person>();
 
-        public void UserChoice()
+        public List<Person> AdressBookList = new List<Person>();
+
+        public void CreatePerson(Person person)
         {
-            Console.WriteLine("Do you want to do? \n 1. Create New Contact \n 2. Edit Contact \n 3. Remove Contact \n 4. Find Person \n List All Contacts");
-            var userInput = Console.ReadLine();
-
-            switch (userInput)
-            {
-                case "1":
-                    CreatePerson();
-                    break;
-
-                case "2":
-                    EditPersonInfo();
-                    break;
-
-                case "3":
-                    RemovePersonFromList();
-                    break;
-
-                case "4":
-                    FindPerson();
-                    break;
-
-                case "5":
-                    ListAllContacts();
-                    break;
-
-                default:
-                    Console.WriteLine("Invalid input");
-                    break;
-            }
-        }
-        public void CreatePerson()
-        {
-            Console.WriteLine("Enter Name:");
-            var name = Console.ReadLine();
-
-            Console.WriteLine("Enter Age:");
-            var age = Convert.ToInt32(Console.ReadLine());
-        
-            Person person = new Person(name, age);
             AdressBookList.Add(person);
         }
-
-        public void RemovePersonFromList()
+        public void RemovePersonFromList(Person person)
         {
-            Console.WriteLine("Who do you want to remove from your list?");
-            var userInput = Console.ReadLine();
-            AdressBookList.RemoveAll(r => r.Name == userInput);
+            AdressBookList.Remove(person);
         }
 
-        public void EditPersonInfo()
+        public Person FindPerson(string userInput)
         {
-            
-        }
+            Person person = AdressBookList.Find(f => f.Name == userInput || f.HomeAdress == userInput
+           || Convert.ToString(f.Age) == userInput || f.EmailAdress == userInput || f.PrivatePhoneNumber == userInput || f.WorkPhoneNumber == userInput);
 
-        public void FindPerson()
-        {
-            Console.WriteLine("Who do you want to find?");
-            var userInput = Console.ReadLine();
-            Person person = AdressBookList.Find(f => f.Name == userInput);
-            Console.WriteLine(person.Age);
-            Console.ReadLine();
+            return person;
         }
 
         public void ListAllContacts()
         {
-            foreach(var person in AdressBookList)
+            foreach (var person in AdressBookList)
             {
-                Console.WriteLine($"{person.Name}, {person.Age}");
+                Console.WriteLine($"Name: {person.Name} Age:{person.Age} Email:{person.EmailAdress} HomeAdress:{person.HomeAdress} " +
+                   $"PrivatePhone:{person.PrivatePhoneNumber} WorkPhone:{person.WorkPhoneNumber}");
             }
         }
     }

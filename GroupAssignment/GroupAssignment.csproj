@@ -44,10 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adressbook.cs" />
-    <Compile Include="Database.cs" />
+    <Compile Include="DataInput.cs" />
+    <Compile Include="IAdressBook.cs" />
+    <Compile Include="IDataInput.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
