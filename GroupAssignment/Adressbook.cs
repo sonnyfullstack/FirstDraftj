@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace GroupAssignment
 {
@@ -29,13 +30,9 @@ namespace GroupAssignment
             return person;
         }
 
-        public void ListAllContacts()
+        public List<Person> ListAllContacts()
         {
-            foreach (var person in AdressBookList)
-            {
-                Console.WriteLine($"Name: {person.Name} Age:{person.Age} Email:{person.EmailAdress} HomeAdress:{person.HomeAdress} " +
-                   $"PrivatePhone:{person.PrivatePhoneNumber} WorkPhone:{person.WorkPhoneNumber}");
-            }
+            return AdressBookList;
         }
     }
 }

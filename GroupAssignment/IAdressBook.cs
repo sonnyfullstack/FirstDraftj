@@ -11,6 +11,6 @@ namespace GroupAssignment
         void CreatePerson(Person person);
         void RemovePersonFromList(Person person);
         Person FindPerson(string userInput);
-        void ListAllContacts();
+        List<Person> ListAllContacts();
     }
 }
