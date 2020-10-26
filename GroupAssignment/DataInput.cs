@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GroupAssignment
 {
     public enum Action { Delete = 1, Create = 2, Edit = 3, Find = 4, ListAll = 5, Invalid }
+    public enum EditAction { Name = 1, Age = 2, Email = 3, HomeAdress = 4, PrivatePhone = 5, WorkPhone = 6, Invalid}
     class DataInput : IDataInput
     {
         public Action GetNextAction()
@@ -39,21 +41,12 @@ namespace GroupAssignment
 
         public Person GetPerson()
         {
-            int age;
-
             Console.WriteLine("Enter Name:");
             var name = Console.ReadLine().ToLower();
-
-            while (true)
-            {
-                Console.WriteLine("Enter Age:");
-                if (int.TryParse(Console.ReadLine(), out age))
-                {
-                    break;
-                }
-                Console.WriteLine("Please enter a valid age");
-            }
-            Person person = new Person(name, age);
+            
+            Console.WriteLine("Enter Private Phone Number:");
+            var privatePhone = Console.ReadLine(); 
+            Person person = new Person(name, privatePhone);
             return person;
         }
         public string Delete()
@@ -75,6 +68,30 @@ namespace GroupAssignment
             var userInput = Console.ReadLine().ToLower();
             return userInput;
         }
+        public EditAction WhatToEdit(Person person)
+        {
+            Console.WriteLine($"What do you want to edit? \n 1. {person.Name}'s Name \n 2. {person.Name}'s Email Adress " +
+               $"\n 3. {person.Name}'s Home Adress \n 4. {person.Name}'s Private Phone Number \n 5. {person.Name}'s Work Phone Number");
+
+            var userInput1 = Console.ReadLine();
+            switch (userInput1)
+            {
+                case "1":
+                    return EditAction.Name;
+                case "2":
+                    return EditAction.Email;
+                case "3":
+                    return EditAction.HomeAdress;
+                case "4":
+                    return EditAction.PrivatePhone;
+                case "5":
+                    return EditAction.WorkPhone;
+                default:
+                    Console.WriteLine("Invalid input");
+                    break;
+            }
+            return EditAction.Invalid;
+        }
         public Person ChangeName(Person person)
         {
             Console.WriteLine("Type the updated name ");
@@ -85,14 +102,14 @@ namespace GroupAssignment
         public Person ChangeEmail(Person person)
         {
             Console.WriteLine("Type the updated Email ");
-            var newEmail = Console.ReadLine();
+            var newEmail = Console.ReadLine().ToLower();
             person.EmailAdress = newEmail;
             return person;
         }
         public Person HomeAdress(Person person)
         {
             Console.WriteLine("Type the updated home adress ");
-            var newHomeAdress = Console.ReadLine();
+            var newHomeAdress = Console.ReadLine().ToLower();
             person.HomeAdress = newHomeAdress;
             return person;
         }
@@ -109,5 +126,31 @@ namespace GroupAssignment
             var newWorkPhone = Console.ReadLine();
             person.WorkPhoneNumber = newWorkPhone;
             return person;
+        }
+
+        public void PersonInformation(Person person)
+        {
+            if (person != null)
+            {
+                Console.WriteLine($"Name:{person.Name} Age:{person.Age} Email:{person.EmailAdress} Home Adress:{person.HomeAdress}" +
+                    $" Private Phone:{person.PrivatePhoneNumber} Work Phone:{person.WorkPhoneNumber}");
+                Console.ReadLine();
+            }
+        }
+        public void ReturnAllContacts(List<Person> people)
+        {
+            foreach(var person in people)
+            {
+                Console.WriteLine($"Name:{person.Name} Age:{person.Age} Email:{person.EmailAdress} Home Adress:{person.HomeAdress}" +
+                    $" Private Phone:{person.PrivatePhoneNumber} Work Phone:{person.WorkPhoneNumber}");
+            }
+        }
+
+        public void NullCheck(Person person)
+        {
+            if (person == null)
+            {
+                Console.WriteLine("This person does not exist");
+            }
         }
 }   }

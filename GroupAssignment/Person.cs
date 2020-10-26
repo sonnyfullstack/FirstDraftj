@@ -16,10 +16,10 @@ namespace GroupAssignment
         public string PrivatePhoneNumber { get; set; }
         public string WorkPhoneNumber { get; set; }
 
-        public Person(string name, int age)
+        public Person(string name, string privatePhone)
         {
             Name = name;
-            Age = age;
+            PrivatePhoneNumber = privatePhone;
         }
 
     }

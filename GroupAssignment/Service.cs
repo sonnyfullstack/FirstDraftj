@@ -25,10 +25,11 @@ namespace GroupAssignment
                     break;
                 case Action.Find:
                    Person person = adressBook.FindPerson(dataInput.Find());
-                    IfNull(person);
+                    dataInput.PersonInformation(person);
+                    dataInput.NullCheck(person);
                     break;
                 case Action.ListAll:
-                    adressBook.ListAllContacts();
+                  dataInput.ReturnAllContacts(adressBook.ListAllContacts());
                     break;
                 case Action.Delete:
                  Person person1 = adressBook.FindPerson(dataInput.Delete());
@@ -38,69 +39,39 @@ namespace GroupAssignment
                     Person person2 = adressBook.FindPerson(dataInput.Edit());
                     EditPerson(person2);
                     break;
+                        
             }
         }
-
-      /*  public string StringCheck(Person userInput)
-        {
-            if(userInput == userInput.Empty)
-            {
-                Console.WriteLine();
-            }
-        }*/
-        public void IfNull(Person person)
-        {
-
-            if (person != null)
-            {
-                Console.WriteLine($"Name:{person.Name} Age:{person.Age} Email:{person.EmailAdress} Home Adress:{person.HomeAdress}" +
-                    $"Private Phone:{person.PrivatePhoneNumber} Work Phone:{person.WorkPhoneNumber}");
-                Console.ReadLine();
-            }
-            else
-            {
-                Console.WriteLine("This person does not exist");
-            }
-        }
-
+        
         public void EditPerson(Person person)
         {
-            if (person != null)
-            {
-                Console.WriteLine($"What do you want to edit? \n 1. {person.Name}'s Name \n 2. {person.Name}'s Email Adress " +
-               $"\n 3. {person.Name}'s Home Adress \n 4. {person.Name}'s Private Phone Number \n 5. {person.Name}'s Work Phone Number");
-                var userInput1 = Console.ReadLine();
-                switch (userInput1)
+            dataInput.NullCheck(person);
+           if(person != null)
+           {
+                
+                switch (dataInput.WhatToEdit(person))
                 {
-                    case "1":
+                    case EditAction.Name:
                         dataInput.ChangeName(person);
                         break;
 
-                    case "2":
+                    case EditAction.Email:
                         dataInput.ChangeEmail(person);
                         break;
 
-                    case "3":
+                    case EditAction.HomeAdress:
                         dataInput.HomeAdress(person);
                         break;
 
-                    case "4":
+                    case EditAction.PrivatePhone:
                         dataInput.PrivatePhoneNumber(person);
                         break;
 
-                    case "5":
+                    case EditAction.WorkPhone:
                         dataInput.WorkPhoneNumber(person);
                         break;
-
-                    default:
-                        Console.WriteLine("Invalid input");
-                        break;
                 }
-            }
-            else
-            {
-                Console.WriteLine("Can't edit a person that doesn't exist");
-            }
+           }
         }
     }
 }
