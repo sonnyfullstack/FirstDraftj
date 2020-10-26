@@ -11,14 +11,16 @@ namespace GroupAssignment
         private static Adressbook Adressbook = new GroupAssignment.Adressbook();
         static void Main(string[] args)
         {
+            IAdressBook adressBook = new Adressbook();
+            IDataInput dataInput = new DataInput();
+            Service service = new Service(dataInput, adressBook);
             bool programIsRunning = true;
-           while (programIsRunning)
-           {
-                Adressbook.UserChoice();
-             
-           }
-            Console.ReadLine();
 
+            while (programIsRunning)
+            {
+                service.UserChoice();
+            }
+            Console.ReadLine();
         }
     }
-}
+}   
