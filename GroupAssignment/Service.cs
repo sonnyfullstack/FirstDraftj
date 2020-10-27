@@ -21,34 +21,34 @@ namespace GroupAssignment
             switch (dataInput.GetNextAction())
             {
                 case Action.Create:
-                    adressBook.CreatePerson(dataInput.GetPerson());
+                   adressBook.CreatePerson(dataInput.GetPerson());
                     break;
                 case Action.Find:
                    Person person = adressBook.FindPerson(dataInput.Find());
-                    dataInput.PersonInformation(person);
                     dataInput.NullCheck(person);
+                    dataInput.PersonInformation(person);
                     break;
                 case Action.ListAll:
                   dataInput.ReturnAllContacts(adressBook.ListAllContacts());
                     break;
                 case Action.Delete:
                  Person person1 = adressBook.FindPerson(dataInput.Delete());
+                    dataInput.NullCheck(person1);
                     adressBook.RemovePersonFromList(person1);
                     break;
                 case Action.Edit:
                     Person person2 = adressBook.FindPerson(dataInput.Edit());
+                    dataInput.NullCheck(person2);
                     EditPerson(person2);
                     break;
-                        
             }
         }
         
         public void EditPerson(Person person)
         {
-            dataInput.NullCheck(person);
+           dataInput.NullCheck(person);
            if(person != null)
            {
-                
                 switch (dataInput.WhatToEdit(person))
                 {
                     case EditAction.Name:
