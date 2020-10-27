@@ -14,7 +14,7 @@ namespace GroupAssignment
     {
         public Action GetNextAction()
         {
-            Console.WriteLine("Do you want to do? \n 1. Create New Contact \n 2. Edit Contact \n 3. Remove Contact \n 4. Find Person \n 5.List All Contacts \n type x and enter to close the application");
+            Console.WriteLine("Do you want to do? \n 1. Create New Contact \n 2. Edit Contact Name, Adress or Phone Numbers \n 3. Remove Contact \n 4. Find Person \n 5.List All Contacts \n type x and enter to close the application");
             var userInput = Console.ReadLine();
 
             switch (userInput)
@@ -41,12 +41,13 @@ namespace GroupAssignment
 
         public Person GetPerson()
         {
+            
             Console.WriteLine("Enter Name:");
             var name = Console.ReadLine().ToLower();
-            
-            Console.WriteLine("Enter Private Phone Number:");
-            var privatePhone = Console.ReadLine(); 
-            Person person = new Person(name, privatePhone);
+             Console.WriteLine("Enter Private Phone Number:");
+                var privatePhoneString = Console.ReadLine();
+            Person person = new Person(name, CheckIfValidPhoneNumber(privatePhoneString));
+            Console.WriteLine("New contact created! If you want to add additional information to your contact please choose edit");
             return person;
         }
         public string Delete()
@@ -64,7 +65,7 @@ namespace GroupAssignment
         }
         public string Find()
         {
-            Console.WriteLine("Search for contacts name, email, adress or age to find a contact that matches that information");
+            Console.WriteLine("Search for contacts name, email or adress to find a contact that matches that information");
             var userInput = Console.ReadLine().ToLower();
             return userInput;
         }
@@ -95,7 +96,7 @@ namespace GroupAssignment
         public Person ChangeName(Person person)
         {
             Console.WriteLine("Type the updated name ");
-            var newName = Console.ReadLine();
+            var newName = Console.ReadLine().ToLower();
             person.Name = newName;
             return person;
         }
@@ -117,14 +118,14 @@ namespace GroupAssignment
         {
             Console.WriteLine("Type the updated private phone number: ");
             var newPrivatePhone = Console.ReadLine();
-            person.PrivatePhoneNumber = newPrivatePhone;
+            person.PrivatePhoneNumber = CheckIfValidPhoneNumber(newPrivatePhone);
             return person;
         }
         public Person WorkPhoneNumber(Person person)
         {
             Console.WriteLine("Type the updated work phone number: ");
             var newWorkPhone = Console.ReadLine();
-            person.WorkPhoneNumber = newWorkPhone;
+            person.WorkPhoneNumber = CheckIfValidPhoneNumber(newWorkPhone);
             return person;
         }
 
@@ -132,7 +133,7 @@ namespace GroupAssignment
         {
             if (person != null)
             {
-                Console.WriteLine($"Name:{person.Name} Age:{person.Age} Email:{person.EmailAdress} Home Adress:{person.HomeAdress}" +
+                Console.WriteLine($"Name:{person.Name} Email:{person.EmailAdress} Home Adress:{person.HomeAdress}" +
                     $" Private Phone:{person.PrivatePhoneNumber} Work Phone:{person.WorkPhoneNumber}");
                 Console.ReadLine();
             }
@@ -141,7 +142,7 @@ namespace GroupAssignment
         {
             foreach(var person in people)
             {
-                Console.WriteLine($"Name:{person.Name} Age:{person.Age} Email:{person.EmailAdress} Home Adress:{person.HomeAdress}" +
+                Console.WriteLine($"Name:{person.Name} Email:{person.EmailAdress} Home Adress:{person.HomeAdress}" +
                     $" Private Phone:{person.PrivatePhoneNumber} Work Phone:{person.WorkPhoneNumber}");
             }
         }
@@ -152,5 +153,21 @@ namespace GroupAssignment
             {
                 Console.WriteLine("This person does not exist");
             }
+        }
+        public string CheckIfValidPhoneNumber(string phoneNumber)
+        {
+            if(!Int32.TryParse(phoneNumber, out int checkIfValid))
+            {
+                while (true)
+                {
+                    Console.WriteLine("Please enter a valid phone number");
+                    phoneNumber = Console.ReadLine();
+                    if (Int32.TryParse(phoneNumber, out checkIfValid))
+                    {
+                        break;
+                    }
+                }
+            }
+            return phoneNumber;
         }
 }   }

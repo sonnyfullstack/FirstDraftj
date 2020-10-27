@@ -9,7 +9,6 @@ namespace GroupAssignment
     class Person
     {
         public string Name { get; set; }
-        public int Age { get; set; }
         public string EmailAdress { get; set; }
         public string HomeAdress { get; set; }
         public string HomePhoneNumber { get; set; }

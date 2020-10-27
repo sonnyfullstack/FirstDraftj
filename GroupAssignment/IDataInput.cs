@@ -17,6 +17,7 @@ namespace GroupAssignment
         string Find();
         void PersonInformation(Person person);
         void NullCheck(Person person);
+        string CheckIfValidPhoneNumber(string phoneNumber);
         Person ChangeName(Person person);
         Person ChangeEmail(Person person);
         Person HomeAdress(Person person);
