@@ -38,7 +38,6 @@ namespace GroupAssignment
                     break;
                 case Action.Edit:
                     Person person2 = adressBook.FindPerson(dataInput.Edit());
-                    dataInput.NullCheck(person2);
                     EditPerson(person2);
                     break;
             }
